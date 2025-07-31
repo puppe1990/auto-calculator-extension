@@ -1,6 +1,7 @@
 # Auto Calculator Chrome Extension
 
 A simple and lightweight Chrome extension that provides instant mathematical calculations right in your browser.
+<img width="329" height="555" alt="Screenshot 2025-07-31 at 20 24 43" src="https://github.com/user-attachments/assets/28bf4f1a-ff61-4ef8-b554-d1c42568ef89" />
 
 ## Features
 
