@@ -1,0 +1,29 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.52 491.52" xml:space="preserve">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#375a7f"/>
+      <stop offset="100%" stop-color="#2c3e50"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <path fill="url(#bgGrad)" d="M399.782,0H91.738C82.17,0,74.413,7.756,74.413,17.325v443.256c0,9.569,7.756,17.325,17.325,17.325h308.044c9.569,0,17.325-7.756,17.325-17.325V17.325C417.107,7.756,409.35,0,399.782,0z"/>
+    <rect x="103.905" y="46.746" fill="#1abc9c" width="283.699" height="122.737"/>
+    <rect x="103.905" y="146.493" fill="#16a085" width="283.699" height="22.989"/>
+    <circle fill="#bdc3c7" cx="133.325" cy="239.329" r="22.456"/>
+    <circle fill="#3498db" cx="208.282" cy="239.329" r="22.456"/>
+    <circle fill="#9b59b6" cx="283.238" cy="239.329" r="22.456"/>
+    <circle fill="#e74c3c" cx="358.195" cy="239.329" r="22.456"/>
+    <circle fill="#1abc9c" cx="133.325" cy="301.865" r="22.456"/>
+    <circle fill="#f39c12" cx="208.282" cy="301.865" r="22.456"/>
+    <circle fill="#8e44ad" cx="283.238" cy="301.865" r="22.456"/>
+    <circle fill="#f1c40f" cx="358.195" cy="301.865" r="22.456"/>
+    <circle fill="#ecf0f1" cx="133.325" cy="364.39" r="22.456"/>
+    <circle fill="#2ecc71" cx="208.282" cy="364.39" r="22.456"/>
+    <circle fill="#e67e22" cx="283.238" cy="364.39" r="22.456"/>
+    <circle fill="#27ae60" cx="358.195" cy="364.39" r="22.456"/>
+    <circle fill="#95a5a6" cx="133.325" cy="426.906" r="22.456"/>
+    <circle fill="#2980b9" cx="208.282" cy="426.906" r="22.456"/>
+    <circle fill="#d35400" cx="283.238" cy="426.906" r="22.456"/>
+    <circle fill="#3498db" cx="358.195" cy="426.906" r="22.456"/>
+  </g>
+</svg>
