@@ -1,12 +1,16 @@
 const expressionInput = document.getElementById("expression");
 const resultDiv = document.getElementById("result");
 
+// Currency mode state
+let currentMode = 'usd'; // Default to USD mode
+
 // Function to save data to Chrome storage
 function saveData() {
     const data = {
         expression: expressionInput.value,
         result: resultDiv.innerHTML,
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        currencyMode: currentMode
     };
     chrome.storage.local.set({ 'calculatorData': data });
 }
@@ -20,6 +24,12 @@ function loadData() {
             if (Date.now() - data.timestamp < 24 * 60 * 60 * 1000) {
                 expressionInput.value = data.expression || '';
                 resultDiv.innerHTML = data.result || '<span class="text-gray-400 text-sm">Ready to calculate...</span>';
+                
+                // Restore currency mode
+                if (data.currencyMode) {
+                    setCurrencyMode(data.currencyMode);
+                }
+                
                 // Recalculate if there's an expression
                 if (data.expression && data.expression.trim() !== '') {
                     calculateExpression(data.expression);
@@ -27,6 +37,59 @@ function loadData() {
             }
         }
     });
+}
+
+// Function to set currency mode
+function setCurrencyMode(mode) {
+    currentMode = mode;
+    const usdBtn = document.getElementById('usd-mode');
+    const brlBtn = document.getElementById('brl-mode');
+    
+    if (mode === 'usd') {
+        usdBtn.classList.add('bg-white', 'text-gray-700', 'shadow-sm');
+        usdBtn.classList.remove('text-gray-500');
+        brlBtn.classList.remove('bg-white', 'text-gray-700', 'shadow-sm');
+        brlBtn.classList.add('text-gray-500');
+    } else {
+        brlBtn.classList.add('bg-white', 'text-gray-700', 'shadow-sm');
+        brlBtn.classList.remove('text-gray-500');
+        usdBtn.classList.remove('bg-white', 'text-gray-700', 'shadow-sm');
+        usdBtn.classList.add('text-gray-500');
+    }
+    
+    // Update placeholder text based on mode
+    if (mode === 'usd') {
+        expressionInput.placeholder = "Enter your calculation (e.g., 3.14 + 2.5)...";
+    } else {
+        expressionInput.placeholder = "Enter your calculation (e.g., 3,14 + 2,5)...";
+    }
+    
+    // Recalculate current expression with new mode
+    if (expressionInput.value.trim() !== '') {
+        calculateExpression(expressionInput.value);
+    }
+}
+
+// Function to process input based on currency mode
+function processInputForMode(input) {
+    if (currentMode === 'brl') {
+        // For BRL mode, convert commas to dots for calculation
+        return input.replace(/,/g, '.');
+    }
+    // For USD mode, keep dots as they are
+    return input;
+}
+
+// Function to format output based on currency mode
+function formatOutputForMode(number) {
+    if (typeof number !== 'number') return number;
+    
+    if (currentMode === 'brl') {
+        // For BRL mode, format with comma as decimal separator
+        return number.toString().replace('.', ',');
+    }
+    // For USD mode, keep dot as decimal separator
+    return number.toString();
 }
 
 // Function to update result display with beautiful styling
@@ -45,7 +108,7 @@ function updateResult(result, isError = false) {
         return;
     }
     
-    // Format the result nicely
+    // Format the result nicely based on currency mode
     let formattedResult = result;
     if (typeof result === 'number') {
         // Check if it's an integer
@@ -53,7 +116,8 @@ function updateResult(result, isError = false) {
             formattedResult = result.toLocaleString();
         } else {
             // Limit decimal places for better display
-            formattedResult = parseFloat(result.toFixed(6)).toLocaleString();
+            const fixedResult = parseFloat(result.toFixed(6));
+            formattedResult = formatOutputForMode(fixedResult);
         }
     }
     
@@ -144,6 +208,9 @@ function calculateExpression(expr) {
         // Clean the expression - remove extra spaces and validate
         let cleanExpr = expr.trim();
         
+        // Process input based on currency mode
+        cleanExpr = processInputForMode(cleanExpr);
+        
         // Remove any non-mathematical characters except spaces
         cleanExpr = cleanExpr.replace(/[^0-9+\-*/().\s]/g, '');
         
@@ -202,6 +269,20 @@ expressionInput.addEventListener("keypress", (e) => {
 document.addEventListener("DOMContentLoaded", () => {
     // Load saved data when popup opens
     loadData();
+    
+    // Set up currency mode buttons
+    const usdBtn = document.getElementById('usd-mode');
+    const brlBtn = document.getElementById('brl-mode');
+    
+    usdBtn.addEventListener("click", () => {
+        setCurrencyMode('usd');
+        saveData();
+    });
+    
+    brlBtn.addEventListener("click", () => {
+        setCurrencyMode('brl');
+        saveData();
+    });
     
     const exampleButtons = document.querySelectorAll(".example-btn");
     

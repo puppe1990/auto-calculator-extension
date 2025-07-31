@@ -21,6 +21,27 @@
             <p class="text-gray-600 text-sm mt-1">Smart calculations made simple</p>
         </div>
 
+        <!-- Currency Options -->
+        <div class="mb-4 bg-white rounded-xl shadow-lg border border-gray-100 p-4 animate-slide-up">
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-medium text-gray-700">Decimal Separator:</span>
+                <div class="flex bg-gray-100 rounded-lg p-1">
+                    <button id="usd-mode" class="currency-btn px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 bg-white text-gray-700 shadow-sm" data-mode="usd">
+                        <span class="flex items-center">
+                            <span class="mr-1">🇺🇸</span>
+                            USD (.)
+                        </span>
+                    </button>
+                    <button id="brl-mode" class="currency-btn px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 text-gray-500" data-mode="brl">
+                        <span class="flex items-center">
+                            <span class="mr-1">🇧🇷</span>
+                            BRL (,)
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Calculator Interface -->
         <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden animate-slide-up">
             <!-- Input Section -->
