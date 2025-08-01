@@ -2,7 +2,7 @@ const expressionInput = document.getElementById("expression");
 const resultDiv = document.getElementById("result");
 
 // Currency mode state
-let currentMode = 'usd'; // Default to USD mode
+let currentMode = 'brl'; // Default to BRL mode
 
 // Function to save data to Chrome storage
 function saveData() {
