@@ -119,11 +119,23 @@ function updateResult(result, isError = false) {
     if (typeof result === 'number') {
         // Check if it's an integer
         if (Number.isInteger(result)) {
-            formattedResult = result.toLocaleString();
+            if (currentMode === 'brl') {
+                // For BRL mode, format integers with thousands separators using dots, no decimal
+                formattedResult = result.toLocaleString('pt-BR');
+            } else {
+                // For USD mode, format with standard locale
+                formattedResult = result.toLocaleString();
+            }
         } else {
             // Limit decimal places for better display
             const fixedResult = parseFloat(result.toFixed(6));
-            formattedResult = formatOutputForMode(fixedResult);
+            if (currentMode === 'brl') {
+                // For BRL mode, format with comma as decimal separator
+                formattedResult = fixedResult.toString().replace('.', ',');
+            } else {
+                // For USD mode, keep dot as decimal separator
+                formattedResult = fixedResult.toString();
+            }
         }
     }
     
