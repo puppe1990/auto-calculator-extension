@@ -46,15 +46,21 @@ function setCurrencyMode(mode) {
     const brlBtn = document.getElementById('brl-mode');
     
     if (mode === 'usd') {
-        usdBtn.classList.add('bg-white', 'text-gray-700', 'shadow-sm');
-        usdBtn.classList.remove('text-gray-500');
-        brlBtn.classList.remove('bg-white', 'text-gray-700', 'shadow-sm');
-        brlBtn.classList.add('text-gray-500');
+        // USD active state
+        usdBtn.classList.add('bg-gradient-to-r', 'from-blue-500', 'to-blue-600', 'text-white', 'shadow-lg', 'border-2', 'border-blue-400', 'transform', 'scale-105');
+        usdBtn.classList.remove('text-gray-500', 'text-gray-700', 'hover:bg-gray-100');
+        
+        // BRL inactive state
+        brlBtn.classList.remove('bg-gradient-to-r', 'from-blue-500', 'to-blue-600', 'text-white', 'shadow-lg', 'border-2', 'border-blue-400', 'transform', 'scale-105');
+        brlBtn.classList.add('text-gray-500', 'hover:bg-gray-100');
     } else {
-        brlBtn.classList.add('bg-white', 'text-gray-700', 'shadow-sm');
-        brlBtn.classList.remove('text-gray-500');
-        usdBtn.classList.remove('bg-white', 'text-gray-700', 'shadow-sm');
-        usdBtn.classList.add('text-gray-500');
+        // BRL active state
+        brlBtn.classList.add('bg-gradient-to-r', 'from-blue-500', 'to-blue-600', 'text-white', 'shadow-lg', 'border-2', 'border-blue-400', 'transform', 'scale-105');
+        brlBtn.classList.remove('text-gray-500', 'text-gray-700', 'hover:bg-gray-100');
+        
+        // USD inactive state
+        usdBtn.classList.remove('bg-gradient-to-r', 'from-blue-500', 'to-blue-600', 'text-white', 'shadow-lg', 'border-2', 'border-blue-400', 'transform', 'scale-105');
+        usdBtn.classList.add('text-gray-500', 'hover:bg-gray-100');
     }
     
     // Update placeholder text based on mode
